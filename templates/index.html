@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detection Comment Toxcity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
+<style> * {
+    text-decoration: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Open Sans',sans-serif;
+}
+
+.wrapper {
+    width: 1100px;
+    margin: auto;
+    position: relative;
+}
+
+.logo a {
+    font-size: 50px;
+    font-weight: 800;
+    float: left;
+    font-family: courier;
+    color: #364f6b;
+}
+
+.menu {
+    float: right;
+}
+
+nav {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    line-height: 80px;
+    position: sticky;
+    position: -webkit-sticky; 
+    top: 0;
+    background: #3CB371;
+    z-index: 1;
+    border-bottom:1px solid #364f6b;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav ul li {
+    float: left;
+}
+
+nav ul li a {
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    padding: 0px 16px 0px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+section {
+    margin: auto;
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.kolom {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.kolom .deskripsi {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'comic sans ms';
+    color: #364f6b;
+}
+
+h2 {
+    font-family: 'comic sans ms';
+    font-weight: 800;
+    font-size: 45px;
+    margin-bottom: 20px;
+    color: #364f6b;
+    width: 100%;
+    line-height: 50px;
+}
+
+a.tbl-biru {
+    background: #3f72af;
+    border-radius: 20px;
+    margin-top: 20px;
+    padding: 15px 20px 15px 20px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+a.tbl-biru:hover {
+    background: #fc5185;
+    text-decoration: none;
+}
+
+a.tbl-pink {
+    background: #fc5185;
+    border-radius: 20px;
+    margin-top: 20px;
+    padding: 15px 20px 15px 20px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+a.tbl-pink:hover {
+    background: #3f72af;
+    text-decoration: none;
+}
+
+p {
+    margin: 10px 0px 10px 0px;
+    padding: 10px 0px 10px 0px;
+}
+
+.tengah {
+    text-align: center;
+    width: 100%;
+}
+
+.tutor-list {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.kartu-tutor {
+    width: 20%;
+    margin: 0 auto;
+}
+
+.kartu-tutor img {
+    width: 80%;
+    border-radius: 50%;
+}
+
+.kartu-tutor p {
+    font-family: 'comic sans ms';
+    font-weight: 800;
+    font-size: 25px;
+    text-align: center;
+    color: #364f6b;
+}
+
+.partner-list {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.kartu-partner {
+    width: 20%;
+    margin: 0 auto;
+}
+
+.kartu-partner img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+#contact {
+    background: #dedede;
+    padding:50px 0px 50px 0px;
+}
+
+.footer {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.footer-section {
+    width: 20%;
+    margin: 0 auto;
+}
+
+h3 {
+    font-family: 'comic sans ms';
+    font-weight: 800;
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #364f6b;
+    width: 100%;
+    line-height: 50px;
+}
+
+#copyright {
+    text-align: center;
+    width: 100%;
+    padding: 50px 0px 50px 0px;
+    margin-top: 50px;
+}
+
+@media screen and (max-width: 991.98px) {
+    .wrapper {
+        width: 90%;
+    }
+
+    .logo a {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    nav .menu {
+        width: 100%;
+        margin: 0;
+    }
+
+    nav .menu ul {
+        text-align: center;
+        margin: auto;
+        line-height: 60px;
+    }
+
+    nav .menu ul li {
+        display: inline-block;
+        float: none;
+    }
+
+    section {
+        display: block;
+    }
+
+    section img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .kartu-tutor {
+        width: 50%;
+    }
+
+    .kartu-partner {
+        width: 50%;
+    }
+}
+.tombol-menu {
+    position: absolute;
+    top: 1.7rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+}
+
+.tombol-menu .garis {
+    height: 3px;
+    background-color: #3f72af;
+}
+
+@media screen and (max-width: 991.98px) {
+    .logo a {
+        display: inline;
+    }
+    .tombol-menu {
+        display: flex;
+    }
+    nav .menu {
+        display: none;
+    }
+    nav .menu.active {
+        display: flex;
+    }
+    nav ul li {
+        width:100%;
+        border-bottom:1px solid #333333;
+    }
+}
+body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            resize: vertical;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .score {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .positive {
+            color: green;
+        }
+
+        .negative {
+            color: red;
+        }
+</style>
+<body>
+    <nav>
+        <div class="wrapper">
+            <div class="logo"><a href=''>Detection Comment.</a></div>
+            <a href="#" class="tombol-menu">
+                <span class="garis"></span>
+                <span class="garis"></span>
+                <span class="garis"></span>
+            </a>
+            <div class="menu">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#profil">Profil</a></li>
+                    <li><a href="#Detection">Detection</a></li>
+                    <li><a href="#members">Members</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="wrapper">
+        <!-- untuk home -->
+        <section id="home">
+            <div class="Container"></div>
+            <img src="https://img.freepik.com/free-vector/web-development-programmer-engineering-coding-website-augmented-reality-interface-screens-developer-project-engineer-programming-software-application-design-cartoon-illustration_107791-3863.jpg?size=626&ext=jpg&ga=GA1.2.1769275626.1605867161"/>
+            <div class="kolom">
+                <p class="deskripsi"> </p>
+                <h2>Selamat Datang</h2>
+                <p>Di Aplikasi Website Detection Comment Toxcitiy</p>
+                <p><a href="" class="tbl-biru">Tim Potlot3</a></p>
+            </div>
+        </section>
+
+        <!-- untuk courses -->
+        <section id="profil">
+            <div class="kolom">
+                <h2>Profil Singkat</h2>
+                <p> Detection Comment Toxicity adalah platform untuk menganalisis dan mendeteksi konten beracun dalam komentar online. Menggunakan kecerdasan buatan dan pemrosesan bahasa alami, aplikasi ini memeriksa komentar pengguna dan mengidentifikasi kata-kata atau frasa yang tidak pantas, pelecehan, atau merendahkan. Hasil analisis ditampilkan dalam bentuk peringatan atau label yang menunjukkan tingkat keberacunan komentar. Tujuannya adalah meningkatkan pengalaman pengguna dengan mengurangi paparan terhadap konten negatif. namun perlu diingat bahwa aplikasi ini tidak sepenuhnya sempurna dan mungkin masih memiliki keterbatasan dalam mendeteksi beberapa jenis komentar toksik atau konteks yang lebih kompleks.</p>
+                <p><a href="" class="tbl-biru">Detection</a></p>
+            </div>
+            <img src="https://img.freepik.com/free-vector/online-learning-isometric-concept_1284-17947.jpg?size=626&ext=jpg&ga=GA1.2.1769275626.1605867161"/>
+        </section>
+
+       
+
+        <!-- untuk partners -->
+        <section id="Detection">
+            <div class="tengah">
+                <div class="kolom">
+                    <h2>Detection </h2>
+                    <p class="deskripsi">Comment storing</p>
+                    <form method="post" action="/">
+                     <label for="comment">Comment:</label><br>
+                         <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br><br>
+                         <input type="submit" value="Submit">
+                        </form>
+                    {% if scores %}
+            <div class="result">
+                <h2>Result:</h2>
+                <p>Your comment: <em>{{ comment }}</em></p>
+                {% for label, score in scores.items() %}
+                <p class="score">
+               {{ label }}: <span class="{% if score %}positive{% else %}negative{% endif %}">
+               {% if score %}Positive{% else %}Negative{% endif %}
+              </span>
+            </p>
+            {% endfor %}
+          </div>
+        {% endif %}
+                </div>
+            </div>
+        </section>
+    </div>
+        </div>
+    </section>
+<!--untuk contact-->
+    <div id="members">
+        <div class="wrapper">
+            <div class="tengah">
+             <div class="kolom">
+                <p class="deskripsi">TIM Kelompok Potlot3</p>
+            <div class="footer">
+                <div class="footer-section">
+                    <h4>Siti Latifatul Okta</h4>
+                    <p>Universitas Prima Indonesia</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Al-Thoriq Amda</h4>
+                    <p>Universitas Malikussaleh</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Dila Puspita</h4>
+                    <p>Universitas Malikussaleh</p>
+                </div>
+                <div class="wrapper">
+                    <div class="tengah">
+                     <div class="kolom">
+                    <div class="footer">
+                        <div class="footer-section">
+                            <h4>Ricky Bagestra</h4>
+                            <p>Universitas Syiah Kuala</p>
+                        </div>
+                        <div class="footer-section">
+                            <h4>Usyur Fajarna</h4>
+                            <p>Universitas Jabal Ghafur</p>
+                        </div>
+                        <div class="footer-section">
+                            <h4>Nikita Gabriela Sitanggang</h4>
+                            <p>Universitas HKBP Nommensen Pematangsiantar</p>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="copyright">
+        <div class="wrapper">
+            &copy; 2023. <b>Potlot3.</b> All Rights Reserved.
+        </div>
+    </div>
+</body>
+</html>
